@@ -90,7 +90,7 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
         return (
           <Stack spacing={3}>
                <TextField
-                 placeholder="Workflow Title"
+                 label="Workflow Title"
                   variant="outlined"
                  fullWidth
                  size="small"
@@ -137,6 +137,8 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
              />
              <TextField
                label="Due Date"
+               // Use text type initially so label floats inside.
+               // Switch to date on focus so picker appears.
                type={formData.dueDate ? "date" : "text"}
                variant="outlined"
                fullWidth

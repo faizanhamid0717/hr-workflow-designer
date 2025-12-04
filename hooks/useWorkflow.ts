@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   useNodesState,
   useEdgesState,
@@ -16,6 +16,20 @@ export const useWorkflow = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+
+  // Auto-close config panel if the selected node is deleted
+  useEffect(() => {
+    if (selectedNode) {
+      const nodeExists = nodes.find((n) => n.id === selectedNode.id);
+      if (!nodeExists) {
+        setSelectedNode(null);
+      } else {
+        if (nodeExists !== selectedNode) {
+            setSelectedNode(nodeExists);
+        }
+      }
+    }
+  }, [nodes, selectedNode]);
 
   const onConnect = useCallback(
     (params: Connection) => setEdges((eds) => addEdge(params, eds)),
