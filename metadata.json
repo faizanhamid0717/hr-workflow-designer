@@ -1,0 +1,5 @@
+{
+  "name": "HR Workflow Designer",
+  "description": "A React Flow based visual editor for designing and simulating HR processes like onboarding and leave approvals.",
+  "requestFramePermissions": []
+}
