@@ -63,7 +63,7 @@ const FlowWrapper = styled(Box)({
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2563eb', // Blue-600
+      main: '#2563eb', 
     },
     background: {
       default: '#f8fafc',
@@ -130,15 +130,6 @@ const HRWorkflowBuilder = () => {
             <Typography variant="h6" component="div" sx={{ fontSize: '1rem', fontWeight: 600 }}>
               Workflow Designer
             </Typography>
-          </Box>
-          <Box>
-            <Chip 
-              label="Prototype Mode" 
-              size="small" 
-              color="primary" 
-              variant="outlined" 
-              sx={{ bgcolor: 'primary.50', borderColor: 'primary.100' }} 
-            />
           </Box>
         </Toolbar>
       </AppBar>

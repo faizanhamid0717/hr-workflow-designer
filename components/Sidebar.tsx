@@ -21,10 +21,10 @@ const SidebarContainer = styled(Paper)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   borderRight: `1px solid ${theme.palette.divider}`,
-  backgroundColor: '#f8fafc', // slate-50 equivalent
+  backgroundColor: '#f8fafc', 
   flexShrink: 0,
   zIndex: 10,
-  borderRadius: 0, // Reset Paper rounding
+  borderRadius: 0, 
 }));
 
 const DraggableItem = styled(ListItem)<{ colorname: string }>(({ theme, colorname }) => ({
@@ -36,7 +36,7 @@ const DraggableItem = styled(ListItem)<{ colorname: string }>(({ theme, colornam
   transition: 'all 0.2s',
   '&:hover': {
     boxShadow: theme.shadows[2],
-    borderColor: colorname, // Simple hover color hint
+    borderColor: colorname, 
   },
   padding: theme.spacing(1.5),
 }));

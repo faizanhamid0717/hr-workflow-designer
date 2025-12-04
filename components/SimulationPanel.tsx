@@ -21,23 +21,23 @@ interface SimulationPanelProps {
 }
 
 const PanelContainer = styled(Paper)(({ theme }) => ({
-    height: 280,
+    height: 250,
     borderTop: `1px solid ${theme.palette.divider}`,
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: '#0f172a', // slate-900 for terminal look
+    backgroundColor: '#0f172a', 
     color: theme.palette.common.white,
     borderRadius: 0,
-    marginTop: 'auto', // push to bottom
+    marginTop: 'auto', 
 }));
 
 const Header = styled(Box)(({ theme }) => ({
     padding: theme.spacing(1, 2),
-    borderBottom: '1px solid #1e293b', // slate-800
+    borderBottom: '1px solid #1e293b',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#020617', // slate-950
+    backgroundColor: '#020617', 
 }));
 
 const LogArea = styled(Box)({

@@ -46,9 +46,10 @@ const Header = styled(Box)(({ theme }) => ({
 }));
 
 const Content = styled(Box)(({ theme }) => ({
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     flex: 1,
     overflowY: 'auto',
+    fontSize: '0.875rem',
 }));
 
 const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNodes, onClose }) => {
@@ -94,6 +95,7 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                   variant="outlined"
                  fullWidth
                  size="small"
+                 sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                  value={formData.label || ''}
                  onChange={(e) => handleChange('label', e.target.value)}
                />
@@ -107,12 +109,13 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
 
       case NodeType.TASK:
         return (
-          <Stack spacing={3}>
+          <Stack spacing={2}>
              <TextField
                label="Task Title"
                variant="outlined"
                fullWidth
                size="small"
+               sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                value={formData.label || ''}
                onChange={(e) => handleChange('label', e.target.value)}
              />
@@ -121,8 +124,9 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                variant="outlined"
                fullWidth
                multiline
-               rows={3}
+               rows={2}
                size="small"
+               sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                value={formData.description || ''}
                onChange={(e) => handleChange('description', e.target.value)}
              />
@@ -132,22 +136,21 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                fullWidth
                size="small"
                placeholder="e.g. hr-onboarding"
+               sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                value={formData.assignee || ''}
                onChange={(e) => handleChange('assignee', e.target.value)}
              />
              <TextField
                label="Due Date"
-               // Use text type initially so label floats inside.
-               // Switch to date on focus so picker appears.
-               type={formData.dueDate ? "date" : "text"}
+               type="date"
                variant="outlined"
                fullWidth
                size="small"
+               sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                value={formData.dueDate || ''}
                onChange={(e) => handleChange('dueDate', e.target.value)}
-               onFocus={(e) => (e.target as HTMLInputElement).type = 'date'}
-               onBlur={(e) => {
-                 if (!e.target.value) (e.target as HTMLInputElement).type = 'text';
+               InputLabelProps={{
+                 shrink: true,
                }}
              />
           </Stack>
@@ -155,12 +158,13 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
 
       case NodeType.APPROVAL:
          return (
-            <Stack spacing={3}>
+            <Stack spacing={2}>
                 <TextField
                    label="Step Name"
                    variant="outlined"
                    fullWidth
                    size="small"
+                   sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                    value={formData.label || ''}
                    onChange={(e) => handleChange('label', e.target.value)}
                  />
@@ -184,6 +188,7 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                     variant="outlined"
                     fullWidth
                     size="small"
+                    sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                     value={formData.autoApproveThreshold || 0}
                     onChange={(e) => handleChange('autoApproveThreshold', parseInt(e.target.value))}
                 />
@@ -193,12 +198,13 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
       case NodeType.AUTOMATION:
         const selectedAction = automations.find(a => a.id === formData.actionId);
         return (
-            <Stack spacing={3}>
+            <Stack spacing={2}>
                  <TextField
                    label="Step Name"
                    variant="outlined"
                    fullWidth
                    size="small"
+                   sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                    value={formData.label || ''}
                    onChange={(e) => handleChange('label', e.target.value)}
                  />
@@ -216,9 +222,9 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                     </Select>
                 </FormControl>
                 {selectedAction && (
-                    <Paper variant="outlined" sx={{ p: 2, bgcolor: 'grey.50' }}>
-                        <Typography variant="subtitle2" sx={{ mb: 2, color: 'text.secondary' }}>PARAMETERS</Typography>
-                        <Stack spacing={2}>
+                    <Paper variant="outlined" sx={{ p: 1.5, bgcolor: 'grey.50' }}>
+                        <Typography variant="caption" sx={{ mb: 1, color: 'text.secondary', display: 'block', fontWeight: 600 }}>PARAMETERS</Typography>
+                        <Stack spacing={1}>
                             {selectedAction.params.map(param => (
                                 <TextField
                                     key={param}
@@ -227,7 +233,7 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                                     fullWidth
                                     size="small"
                                     placeholder={`Enter value`}
-                                    // Simplified: not persisting dynamic params for prototype
+                                    sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                                 />
                             ))}
                         </Stack>
@@ -238,12 +244,13 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
 
       case NodeType.END:
         return (
-            <Stack spacing={3}>
+            <Stack spacing={2}>
                 <TextField
                    label="Step Name"
                    variant="outlined"
                    fullWidth
                    size="small"
+                   sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                    value={formData.label || ''}
                    onChange={(e) => handleChange('label', e.target.value)}
                  />
@@ -252,8 +259,9 @@ const NodeConfigPanel: React.FC<NodeConfigPanelProps> = ({ selectedNode, setNode
                    variant="outlined"
                    fullWidth
                    multiline
-                   rows={3}
+                   rows={2}
                    size="small"
+                   sx={{ '& .MuiInputBase-input': { fontSize: '0.875rem', padding: '8px 12px' } }}
                    value={formData.endMessage || ''}
                    onChange={(e) => handleChange('endMessage', e.target.value)}
                  />

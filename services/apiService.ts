@@ -16,21 +16,18 @@ export const fetchAutomations = async (): Promise<AutomationAction[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(MOCK_AUTOMATIONS);
-    }, 500); // Simulate network latency
+    }, 500); 
   });
 };
 
-/**
- * Simulates POST /simulate
- * Validates the workflow and executes a mock run.
- */
+
 export const simulateWorkflow = async (nodes: Node[], edges: Edge[]): Promise<SimulationResult> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       const logs: SimulationLog[] = [];
       const errors: string[] = [];
 
-      // 1. Validation: Check for Start Node
+
       const startNode = nodes.find((n) => n.type === NodeType.START);
       if (!startNode) {
         resolve({
@@ -41,7 +38,7 @@ export const simulateWorkflow = async (nodes: Node[], edges: Edge[]): Promise<Si
         return;
       }
 
-      // 2. Traversal Simulation (Simple BFS/DFS mock)
+
       let currentNode: Node | undefined = startNode;
       let step = 1;
       const visited = new Set<string>();
@@ -54,8 +51,7 @@ export const simulateWorkflow = async (nodes: Node[], edges: Edge[]): Promise<Si
         visited.add(currentNode.id);
 
         let statusMessage = 'Executed successfully';
-        
-        // Node specific logic simulation
+  
         switch (currentNode.type) {
             case NodeType.START:
                 statusMessage = 'Workflow initiated.';
@@ -93,7 +89,6 @@ export const simulateWorkflow = async (nodes: Node[], edges: Edge[]): Promise<Si
         if (outgoingEdge) {
           currentNode = nodes.find((n) => n.id === outgoingEdge.target);
         } else {
-          // If not an end node and no outgoing edge, it's a dead end
           if (currentNode.type !== NodeType.END) {
              logs.push({
                 step: step++,
@@ -114,6 +109,6 @@ export const simulateWorkflow = async (nodes: Node[], edges: Edge[]): Promise<Si
         logs,
         errors: errors.length > 0 ? errors : undefined,
       });
-    }, 1000); // Simulate processing time
+    }, 1000); 
   });
 };
